@@ -1,0 +1,546 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Endpoit DLP Plus to Endpoint Central</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+  --green:#0B3D2E;
+  --green-2:#19A974;
+  --green-3:#2DBA8A;
+  --green-light:#EAF7F2;
+
+  --red:#e53935;
+
+  --dark:#111;
+  --muted:#555;
+  --border:#e9eef6;
+}
+
+/* RESET */
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:Inter,sans-serif;
+background:#ffffff;
+color:var(--dark);
+}
+
+/* NAVBAR */
+
+.topbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:0 50px;
+height:60px;
+border-bottom:1px solid var(--border);
+background:#fff;
+}
+
+.logo span:first-child{
+font-size:12px;
+color:var(--green-2);
+font-weight:600;
+}
+
+.logo span:last-child{
+font-size:15px;
+font-weight:700;
+}
+
+.nav{
+display:flex;
+gap:22px;
+align-items:center;
+}
+
+.nav a{
+text-decoration:none;
+font-size:13px;
+color:#555;
+transition:.2s;
+}
+
+.nav a:hover{
+color:#000;
+}
+
+.trial-btn{
+background:var(--red);
+color:#fff !important;
+padding:8px 16px;
+border-radius:6px;
+font-weight:600;
+}
+
+/* HERO */
+
+.hero{
+min-height:calc(100vh - 60px);
+display:flex;
+align-items:center;
+background:
+radial-gradient(circle at 20% 30%, rgba(25,169,116,0.18), transparent 40%),
+radial-gradient(circle at 80% 60%, rgba(11,61,46,0.12), transparent 40%),
+linear-gradient(180deg,#eef7f3 0%,#f6fbf9 60%,#ffffff 100%);
+}
+
+.hero-inner{
+width:1150px;
+margin:auto;
+display:grid;
+grid-template-columns:1fr 380px;
+gap:70px;
+padding:70px 20px;
+}
+
+/* LEFT */
+
+.hero-left{
+text-align:center;
+}
+
+.title-main{
+font-size:40px;
+font-weight:800;
+}
+
+.title-script{
+font-family:"Playfair Display",serif;
+font-style:italic;
+font-size:32px;
+color:#555;
+margin:6px 0;
+}
+
+.title-blue{
+font-size:40px;
+font-weight:800;
+color:var(--green-2);
+}
+
+.hero-desc{
+margin:20px auto;
+max-width:500px;
+font-size:16px;
+color:#444;
+line-height:1.7;
+}
+
+.section-heading{
+margin-top:24px;
+font-size:19px;
+font-weight:700;
+}
+
+/* TOGGLE */
+
+.toggle{
+display:inline-flex;
+margin:20px 0 26px;
+background:linear-gradient(90deg,var(--green),var(--green-2));
+padding:4px;
+border-radius:999px;
+}
+
+.toggle button{
+border:none;
+background:transparent;
+padding:9px 22px;
+font-size:13px;
+color:#fff;
+font-weight:600;
+border-radius:999px;
+cursor:pointer;
+}
+
+.toggle button.active{
+background:#fff;
+color:var(--green);
+}
+
+/* FEATURE PANELS */
+
+.feature-panel{
+display:none;
+}
+
+.feature-panel.active{
+display:block;
+}
+
+.feature-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:16px;
+}
+
+.feature-card{
+background:rgba(255,255,255,.75);
+backdrop-filter:blur(8px);
+border:1px solid #e8effc;
+border-radius:12px;
+padding:18px;
+transition:.25s;
+}
+
+.feature-card:hover{
+transform:translateY(-4px);
+box-shadow:0 8px 22px rgba(11,61,46,0.12);
+}
+
+.feature-card h3{
+font-size:14px;
+font-weight:700;
+margin-bottom:6px;
+}
+
+.feature-card p{
+font-size:13px;
+color:#555;
+line-height:1.6;
+}
+
+/* FORM */
+
+.form-card{
+background:#fff;
+padding:30px 26px;
+border-radius:14px;
+box-shadow:0 10px 30px rgba(0,0,0,.12);
+}
+
+.form-card input{
+width:100%;
+padding:13px;
+border-radius:7px;
+border:1px solid #ddd;
+margin-bottom:14px;
+font-size:14px;
+transition:.2s;
+}
+
+.form-card input:focus{
+outline:none;
+border-color:var(--green-2);
+box-shadow:0 0 0 3px rgba(25,169,116,.15);
+}
+
+.region-note{
+font-size:12px;
+color:#777;
+margin-bottom:14px;
+}
+
+/* CHECKBOX */
+
+.checkbox-row{
+display:flex;
+align-items:center;
+gap:10px;
+margin-bottom:18px;
+}
+
+.checkbox-row input{
+width:18px;
+height:18px;
+}
+
+.checkbox-row label{
+font-size:12px;
+color:#666;
+}
+
+/* SIGNUP BUTTON */
+
+.signup-btn{
+width:100%;
+padding:14px;
+background:linear-gradient(90deg,#e53935,#ff5a4f);
+color:#fff;
+border:none;
+border-radius:7px;
+font-weight:700;
+cursor:pointer;
+font-size:14px;
+transition:.2s;
+}
+
+.signup-btn:hover{
+transform:translateY(-1px);
+box-shadow:0 6px 18px rgba(229,57,53,.35);
+}
+
+/* LOGIN */
+
+.form-login{
+text-align:center;
+font-size:13px;
+margin-top:16px;
+}
+
+.form-login a{
+color:rgba(53, 73, 226, 0.829);
+text-decoration:none;
+font-weight:600;
+}
+
+/* DIVIDER */
+
+.divider{
+display:flex;
+align-items:center;
+gap:10px;
+margin:18px 0;
+}
+
+.divider hr{
+flex:1;
+border:none;
+border-top:1px solid #eee;
+}
+
+.divider span{
+font-size:12px;
+color:#aaa;
+}
+
+/* SOCIAL LOGIN */
+
+.socials{
+display:flex;
+gap:12px;
+}
+
+.socials button{
+flex:1;
+padding:11px;
+border:1px solid #ddd;
+border-radius:7px;
+background:#fff;
+cursor:pointer;
+font-size:13px;
+transition:.2s;
+}
+
+.socials button:hover{
+background:#f7f7f7;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:900px){
+
+.hero-inner{
+grid-template-columns:1fr;
+gap:50px;
+max-width:520px;
+}
+
+.feature-grid{
+grid-template-columns:1fr;
+}
+
+.nav a:not(.trial-btn){
+display:none;
+}
+
+.title-main,
+.title-blue{
+font-size:32px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header class="topbar">
+
+<div class="logo">
+<span>ManageEngine</span><br>
+<span>Endpoint Central</span>
+</div>
+
+<nav class="nav">
+<a href="#">Features</a>
+<a href="#">Solutions</a>
+<a href="#">Demo</a>
+<a href="#">Resources</a>
+<a href="#">Support</a>
+<a class="trial-btn">Free Trial</a>
+</nav>
+
+</header>
+
+<section class="hero">
+
+<div class="hero-inner">
+
+<div class="hero-left">
+
+<h1 class="title-main">Endpoint Data Loss Prevention</h1>
+<div class="title-script">via</div>
+<div class="title-blue">Endpoint Security Platform</div>
+
+<p class="hero-desc">
+Endpoint data loss prevention reduces exposure, but true endpoint protection comes from securing vulnerabilities, devices, applications, browsers and ransomware threats together.
+</p>
+
+<h2 class="section-heading">
+Explore the capabilities of Endpoint Central
+</h2>
+
+<div class="toggle">
+<button class="active" data-target="security">Endpoint Security</button>
+<button data-target="management">Endpoint Management</button>
+</div>
+
+<!-- SECURITY -->
+
+<div class="feature-panel active" id="security">
+
+<div class="feature-grid">
+
+<div class="feature-card">
+<h3>Vulnerability & Patch Management</h3>
+<p>Detect, prioritize, and remediate vulnerabilities across endpoints.</p>
+</div>
+
+<div class="feature-card">
+<h3>Application & Privilege Control</h3>
+<p>Strengthen endpoint security with trusted application control and least-privilege enforcement.</p>
+</div>
+
+<div class="feature-card">
+<h3>Ransomware Protection</h3>
+<p>Behavior-based detection protects data at rest, in use, and in transit.</p>
+</div>
+
+<div class="feature-card">
+<h3>Browser Security</h3>
+<p>Block malicious downloads and manage browser extensions.</p>
+</div>
+
+</div>
+
+</div>
+
+<!-- MANAGEMENT -->
+
+<div class="feature-panel" id="management">
+
+<div class="feature-grid">
+
+<div class="feature-card">
+<h3>Remote Troubleshooting</h3>
+<p>Securely access endpoints and resolve issues remotely.</p>
+</div>
+
+<div class="feature-card">
+<h3>Software Distribution</h3>
+<p>Deploy and update applications across your network.</p>
+</div>
+
+<div class="feature-card">
+<h3>IT Asset Management</h3>
+<p>Track hardware and software inventory in real time.</p>
+</div>
+
+<div class="feature-card">
+<h3>OS Deployment</h3>
+<p>Automate OS imaging and system provisioning.</p>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="form-card" style="
+    height: 540px;
+">
+
+<input type="text" placeholder="Name *">
+<input type="email" placeholder="Business Email *">
+<input type="password" placeholder="Password *">
+<input type="text" placeholder="Company *">
+
+<p class="region-note">
+It looks like you're in India based on your IP.
+</p>
+
+<div class="checkbox-row">
+<input type="checkbox">
+<label>I agree to the Terms of Service and Privacy Policy.</label>
+</div>
+
+<button class="signup-btn">
+SIGN UP FOR FREE
+</button>
+
+<p class="form-login">
+Already have an account? <a href="#">Login</a>
+</p>
+
+<div class="divider">
+<hr>
+<span>or sign in using</span>
+<hr>
+</div>
+
+<div class="socials">
+<button>Google</button>
+<button>Microsoft</button>
+</div>
+
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+<script>
+
+const buttons=document.querySelectorAll(".toggle button");
+const panels=document.querySelectorAll(".feature-panel");
+
+buttons.forEach(button=>{
+
+button.addEventListener("click",()=>{
+
+buttons.forEach(b=>b.classList.remove("active"));
+panels.forEach(p=>p.classList.remove("active"));
+
+button.classList.add("active");
+
+const target=button.getAttribute("data-target");
+document.getElementById(target).classList.add("active");
+
+});
+
+});
+
+</script>
+
+</body>
+</html>
